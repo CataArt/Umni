@@ -11,6 +11,10 @@
   },
   "homepage": "https://CataArt.github.io/Umni/",
   "scripts": {
+    "build": "tsc",
     "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
