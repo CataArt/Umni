@@ -1,0 +1,20 @@
+{
+  "name": "Umni",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CataArt/Umni.git",
+  "author": "CataArt",
+  "license": "MIT",
+  "dependencies": {
+    "@types/gh-pages": "^6.1.0",
+    "gh-pages": "^6.1.1"
+  },
+  "homepage": "https://CataArt.github.io/Umni/",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
