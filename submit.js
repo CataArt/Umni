@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * submit.ts
  */
@@ -9,4 +7,4 @@ function submit() {
         editor.value = editor.value.replace(/あ/g, 'い');
     }
 }
-exports.default = submit;
+export default submit;
