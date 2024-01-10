@@ -1,7 +1,7 @@
 /**
  * submit.test.ts
  */
-import submit from './submit';
+import submit from './src/submit';
 
 describe('submit function', () => {
   it('replaces all occurrences of あ with い', () => {

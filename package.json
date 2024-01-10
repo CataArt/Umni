@@ -11,7 +11,7 @@
   },
   "homepage": "https://CataArt.github.io/Umni/",
   "scripts": {
-    "build": "tsc",
+    "build": "webpack",
     "deploy": "gh-pages -d .",
     "test": "jest"
   },
@@ -20,6 +20,9 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
