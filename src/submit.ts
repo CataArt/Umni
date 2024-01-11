@@ -2,17 +2,14 @@ import { loadReplacements } from './replacements';
 
 async function submit(): Promise<void> {
   const editor = document.getElementById('editor') as HTMLTextAreaElement;
-  const dict1 = document.getElementById('dict1') as HTMLInputElement;
-  const dict2 = document.getElementById('dict2') as HTMLInputElement;
+  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
   let replacements = new Map<string, string>();
 
-  if (dict1.checked) {
-    const dict1Replacements = await loadReplacements(dict1.value);
-    dict1Replacements.forEach((val, key) => replacements.set(key, val));
-  }
-  if (dict2.checked) {
-    const dict2Replacements = await loadReplacements(dict2.value);
-    dict2Replacements.forEach((val, key) => replacements.set(key, val));
+  for (const checkbox of checkboxes) {
+    if (checkbox.checked) {
+      const dictReplacements = await loadReplacements(checkbox.value);
+      dictReplacements.forEach((val, key) => replacements.set(key, val));
+    }
   }
 
   if (editor) {
@@ -23,5 +20,4 @@ async function submit(): Promise<void> {
     editor.value = value;
   }
 }
-
   export default submit;
