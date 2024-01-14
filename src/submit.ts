@@ -15,7 +15,7 @@ async function submit(): Promise<void> {
   if (editor) {
     let value = editor.value;
     replacements.forEach((replacement, original) => {
-      value = value.replace(new RegExp(original, 'g'), replacement);
+      value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, ''));
     });
     editor.value = value;
   }
