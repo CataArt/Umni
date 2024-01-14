@@ -6,7 +6,8 @@ export async function loadReplacements(filename: string): Promise<Map<string, st
 
   for (const line of lines) {
     const [original, replacement] = line.split(',');
-    replacements.set(original, replacement);
+    // ↓こっちは要らない可能性が高い
+    replacements.set(original, replacement.replace(/[\n\r]+/, ''));
   }
 
   return replacements;
