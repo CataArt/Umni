@@ -6,7 +6,7 @@ export async function loadReplacements(filename: string): Promise<Map<string, st
 
   for (const line of lines) {
     const [original, replacement] = line.split(',');
-    replacements.set(original, replacement.replace(new RegExp('\n', 'g'), ''));
+    replacements.set(original, replacement.replace(/[\n\r]+/, ''));
   }
 
   return replacements;
