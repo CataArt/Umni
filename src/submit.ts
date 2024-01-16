@@ -20,7 +20,7 @@ async function submit(): Promise<void> {
       .sort((a, b) => b[0].length - a[0].length);
 
     sortedReplacements.forEach(([original, replacement]) => {
-      value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, ''));
+      value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
     });
     editor.value = value;
   }
