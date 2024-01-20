@@ -28,7 +28,7 @@ async function submit(): Promise<void> {
           value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
         }
       });
-      value = value.replace(/底底/g, '底'));
+      value = value.replace(/底底/g, '底');
 
       /*
     sortedReplacements.forEach(([original, replacement]) => {
