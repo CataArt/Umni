@@ -18,6 +18,9 @@ async function submit(): Promise<void> {
     }
   }
 
+  console.log(replacements);
+  console.log(tempReplacements);
+
   if (editor) {
     let value = editor.value;
 
