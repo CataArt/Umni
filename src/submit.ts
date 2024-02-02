@@ -11,7 +11,7 @@ async function submit(): Promise<void> {
     if (checkbox.checked) {
       const dictReplacements = await loadReplacements(checkbox.value);
       dictReplacements.forEach((val, key) => {
-        let tempKey = `★★${counter++}_${'a'.repeat(val.length)}★★`.replace('1', '一'); // 一時的なキーを生成
+        let tempKey = `★★${counter++}_${'a'.repeat(val.length)}★★`.replace(/1/g, '一'); // 一時的なキーを生成
         replacements.set(tempKey, val);
         tempReplacements.set(key, tempKey); // 元のキーを一時的なキーにマッピング
       });    
