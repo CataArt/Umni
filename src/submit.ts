@@ -38,20 +38,10 @@ async function submit(): Promise<void> {
     // 一時的な置換を最終的な置換に変更
     Array.from(replacements)
       .forEach(([original, replacement]) => {
-        const tempKey = tempReplacements.get(original);
-        if (tempKey) {
-          value = value.replace(new RegExp(tempKey, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
-
-        }
+        value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
       });
-      
-    value = value.replace(/底底/g, '底');
 
-      /*
-    sortedReplacements.forEach(([original, replacement]) => {
-      value = value.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
-    });
-    */
+    value = value.replace(/底底/g, '底');
     editor.value = value;
   }
 }
