@@ -1,8 +1,8 @@
-import submit from './submit';
+import translate from './translate';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const submitButton = document.getElementById('submitButton') as HTMLButtonElement | null;
-  if (submitButton) {
-    submitButton.addEventListener('click', submit);
+  const translateButton = document.getElementById('translateButton') as HTMLButtonElement | null;
+  if (translateButton) {
+    translateButton.addEventListener('click', translate);
    }
 });

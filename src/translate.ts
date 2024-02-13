@@ -1,6 +1,6 @@
 import { loadReplacements } from './replacements';
 
-async function submit(): Promise<void> {
+async function translate(): Promise<void> {
   const editor = document.getElementById('editor') as HTMLTextAreaElement;
   const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
   let replacements = new Map<string, string>();
@@ -51,4 +51,4 @@ async function submit(): Promise<void> {
     editor.value = value;
   }
 }
-  export default submit;
+  export default translate;
