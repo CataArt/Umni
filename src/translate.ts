@@ -1,8 +1,6 @@
 import { loadReplacements } from './replacements';
 
-async function translate(): Promise<void> {
-  const editor = document.getElementById('editor') as HTMLTextAreaElement;
-  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
+async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTMLInputElement>): Promise<void> {
   let replacements = new Map<string, string>();
   let tempReplacements = new Map<string, string>();
   let counter = 1;
@@ -17,9 +15,6 @@ async function translate(): Promise<void> {
       });    
     }
   }
-
-  //console.log(replacements);
-  //console.log(tempReplacements);
 
   if (editor) {
     let value = editor.value;
