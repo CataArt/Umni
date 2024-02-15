@@ -5,13 +5,21 @@ async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTM
   let tempReplacements = new Map<string, string>();
   let counter = 1;
 
+  // チェックされた辞書ファイルを読み込み、置換マップを作成
   for (const checkbox of checkboxes) {
     if (checkbox.checked) {
       const dictReplacements = await loadReplacements(checkbox.value);
+
+      // 一度置換したところを別の置換ルールでさらに置換しないために、一時的な置換マップを作成 
+      // (一時的な置換先は ★★1_aaa★★, ★★2_aaaa★★, ... となり、最後に元の置換先に置換される)
       dictReplacements.forEach((val, key) => {
-        let tempKey = `★★${counter++}_${'a'.repeat(val.length)}★★`.replace(/1/g, '一').replace(/2/g, '二'); // 一時的なキーを生成
+        // 一時的な置換先を生成
+        // 一時的な置換先に数字が含まれるせいで、数字の置換元で置換してしまうことがあるので、あまり出現しない漢数字にしている
+        let tempKey = `★★${counter++}_${'a'.repeat(val.length)}★★`.replace(/1/g, '一').replace(/2/g, '二');
+        // 元の置換基を一時的な置換先にマッピング
+        tempReplacements.set(key, tempKey); 
+        // 一時的な置換先を元の置換先にマッピング
         replacements.set(tempKey, val);
-        tempReplacements.set(key, tempKey); // 元のキーを一時的なキーにマッピング
       });    
     }
   }
