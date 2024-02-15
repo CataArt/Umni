@@ -1,3 +1,7 @@
+/**
+ * 置換用辞書取得
+ */
+
 export async function loadReplacements(filename: string): Promise<Map<string, string>> {
   const response = await fetch(filename);
   const text = await response.text();
