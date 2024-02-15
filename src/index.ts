@@ -1,3 +1,7 @@
+/**
+ * index ページの初期化処理
+ */
+
 import translate from './translate';
 
 document.addEventListener('DOMContentLoaded', () => {
