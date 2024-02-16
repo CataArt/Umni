@@ -1,3 +1,7 @@
+/**
+ * 置換用辞書取得
+ */
+
 export async function loadReplacements(filename: string): Promise<Map<string, string>> {
   const response = await fetch(filename);
   const text = await response.text();
@@ -6,7 +10,6 @@ export async function loadReplacements(filename: string): Promise<Map<string, st
 
   for (const line of lines) {
     const [original, replacement] = line.split(',');
-    // ↓こっちは要らない可能性が高い
     replacements.set(original, replacement.replace(/[\n\r]+/, ''));
   }
 

@@ -1,3 +1,7 @@
+/**
+ * 翻訳処理
+ */
+
 import { loadReplacements } from './replacements';
 
 async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTMLInputElement>): Promise<void> {
@@ -34,10 +38,24 @@ async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTM
     tempSortedReplacements.forEach(([original, replacement]) => {
       if (replacement.length >= 13) {
         // 変換後の文字列が長い場合、最初のマッチのみ置換 (同じ変換が複数回行われると、くどいので)
-        text = text.replace(new RegExp(original), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
+        let replaced = false;
+        text = text.replace(new RegExp(original, 'g'), (match) => {
+          if (!replaced && Math.random() * 100 < 50) {
+            replaced = true;
+            return replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n');
+          } else {
+            return match;
+          }
+        });
       } else {
         // 変換後の文字列が短い場合は全てのマッチを置換
-        text = text.replace(new RegExp(original, 'g'), replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n'));
+        text = text.replace(new RegExp(original, 'g'), (match) => {
+          if (Math.random() * 100 < 50) {
+            return replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n');
+          } else {
+            return match;
+          }
+        });
       }
     });
 
