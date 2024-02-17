@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor') as HTMLTextAreaElement | null;
   const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
   const translateButton = document.getElementById('translateButton') as HTMLButtonElement | null;
-  if (editor && translateButton) {
-    translateButton.addEventListener('click', () => translate(editor, checkboxes));
+  const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement | null;
+  if (editor && translateButton && replaceProbabilityInput) {
+    translateButton.addEventListener('click', () => translate(editor, checkboxes, replaceProbabilityInput.value));
   }
 });
