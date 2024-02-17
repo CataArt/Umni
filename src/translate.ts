@@ -4,10 +4,11 @@
 
 import { loadReplacements } from './replacements';
 
-async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTMLInputElement>): Promise<void> {
+async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTMLInputElement>, replaceProbabilityInput: string): Promise<void> {
   let replacements = new Map<string, string>();
   let tempReplacements = new Map<string, string>();
   let counter = 1;
+  let replaceProbability = parseInt(replaceProbabilityInput) || 50;
 
   // チェックされた辞書ファイルを読み込み、置換マップを作成
   for (const checkbox of checkboxes) {
@@ -40,7 +41,7 @@ async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTM
         // 変換後の文字列が長い場合、最初のマッチのみ置換 (同じ変換が複数回行われると、くどいので)
         let replaced = false;
         text = text.replace(new RegExp(original, 'g'), (match) => {
-          if (!replaced && Math.random() * 100 < 50) {
+          if (!replaced && Math.random() * 100 <= replaceProbability) {
             replaced = true;
             return replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n');
           } else {
@@ -50,7 +51,7 @@ async function translate(editor: HTMLTextAreaElement, checkboxes: NodeListOf<HTM
       } else {
         // 変換後の文字列が短い場合は全てのマッチを置換
         text = text.replace(new RegExp(original, 'g'), (match) => {
-          if (Math.random() * 100 < 50) {
+          if (Math.random() * 100 <= replaceProbability) {
             return replacement.replace(/[\n\r]+/, '').replace(/\\n/g, '\n');
           } else {
             return match;
