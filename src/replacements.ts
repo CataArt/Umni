@@ -34,7 +34,6 @@ export async function loadReplacements(filename: CsvFileName): Promise<Map<strin
 
     return replacements;
   } catch (error) {
-    // エラーハンドリングの強化
     console.error(`An error occurred while loading replacements: ${error}`);
     throw error;
   }
