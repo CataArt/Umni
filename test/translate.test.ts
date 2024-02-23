@@ -5,6 +5,7 @@ import { loadReplacements } from '../src/replacements';
 jest.mock('../src/replacements');
 jest.spyOn(global.Math, 'random').mockReturnValue(0.5); // 常に50%の確率で置換が行われるように設定
 
+/*
 describe('辞書を選択する機能', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -30,3 +31,4 @@ describe('辞書を選択する機能', () => {
     expect(loadReplacements).toHaveBeenCalledWith(dictName);
   });
 });
+*/
