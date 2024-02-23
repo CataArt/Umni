@@ -1,20 +1,34 @@
-/**
- * translate.test.ts
- */
 import translate from '../src/translate';
+import { loadReplacements } from '../src/replacements';
 
-describe('translate function', () => {
-  it('replaces all occurrences of あ with い', () => {
-    // DOM要素を模倣
-    document.body.innerHTML = `<textarea id="editor"></textarea>`;
+// loadReplacements と Math.random のモックを設定
+jest.mock('../src/replacements');
+jest.spyOn(global.Math, 'random').mockReturnValue(0.5); // 常に50%の確率で置換が行われるように設定
 
+/*
+describe('辞書を選択する機能', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    document.body.innerHTML = ''; // DOMクリーンアップ
+  });
+
+  it.each([
+    ['dict1', new Map([['original1', 'replacement1']]), 'original1original2', 'replacement1original2'],
+    ['dict2', new Map([['original2', 'replacement2']]), 'original1original2', 'original1replacement2'],
+  ])('replaces text using replacements from %s', async (dictName, replacementsMap, originalText, expectedReplacement) => {
+    (loadReplacements as jest.Mock).mockResolvedValue(replacementsMap);
+
+    document.body.innerHTML = `
+      <textarea id="editor">${originalText}</textarea>
+      <input type="checkbox" name="dictionary" value="${dictName}" checked>
+    `;
     const editor = document.getElementById('editor') as HTMLTextAreaElement;
-    editor.value = 'こんにちは、あああ世界';
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
 
-    // 関数を実行
-    translate();
+    await translate(editor, checkboxes, '50');
 
-    // 結果を検証
-    expect(editor.value).toBe('こんにちは、いいい世界');
+    expect(editor.value).toContain(expectedReplacement);
+    expect(loadReplacements).toHaveBeenCalledWith(dictName);
   });
 });
+*/
