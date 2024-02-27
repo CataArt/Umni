@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor') as HTMLTextAreaElement | null;
   const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
   const translateButton = document.getElementById('translateButton') as HTMLButtonElement | null;
+  const restoreButton = document.getElementById('restoreButton') as HTMLButtonElement | null;
   const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement | null;
   const originalTextArea = document.getElementById('original_text_area') as HTMLTextAreaElement | null;
-  if (editor && translateButton && replaceProbabilityInput && originalTextArea) {
+  if (editor && translateButton && replaceProbabilityInput && originalTextArea && restoreButton) {
     translateButton.addEventListener('click', async () => {
       // 元のテキストを表示
       originalTextArea.value = editor.value;
@@ -20,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(checkbox => checkbox.checked)
         .map(checkbox => checkbox.value);
       editor.value = await translate(editor.value, checkedDictionaries, replaceProbabilityInput.value);
+    });
+
+    restoreButton.addEventListener('click', () => {
+      editor.value = originalTextArea.value;
     });
   }
 });
