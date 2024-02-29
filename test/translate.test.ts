@@ -3,9 +3,9 @@ import { loadReplacements } from '../src/replacements';
 
 // loadReplacements と Math.random のモックを設定
 jest.mock('../src/replacements');
-jest.spyOn(global.Math, 'random').mockReturnValue(0.5); // 常に50%の確率で置換が行われるように設定
+jest.spyOn(global.Math, 'random').mockReturnValue(1); // 100%の確率で置換が行われるように設定
 
-/*
+
 describe('辞書を選択する機能', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -24,11 +24,11 @@ describe('辞書を選択する機能', () => {
     `;
     const editor = document.getElementById('editor') as HTMLTextAreaElement;
     const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
+    const checkedDictionaries = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
 
-    await translate(editor, checkboxes, '50');
+    const translatedText = await translate(editor.value, checkedDictionaries, '100');
 
-    expect(editor.value).toContain(expectedReplacement);
+    expect(translatedText).toContain(expectedReplacement);
     expect(loadReplacements).toHaveBeenCalledWith(dictName);
   });
 });
-*/
