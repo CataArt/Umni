@@ -46,12 +46,8 @@ describe('index page initialization', () => {
     const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
     const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement;
   
-    // モック関数の戻り値を設定
-    //(translate as jest.Mock).mockResolvedValue('translated text');
-  
     if (translateButton && editor && replaceProbabilityInput) {
       // 非同期のclickイベントをシミュレートする方法を検討する
-      //await 
       translateButton.click();
   
       // 正しい引数でtranslateが呼び出されたかを確認
@@ -59,6 +55,20 @@ describe('index page initialization', () => {
       expect(translate).toHaveBeenCalledWith(editor.value, checkedDictionaries, replaceProbabilityInput.value);
     } else {
       fail('Setup failed: Required elements are null');
+    }
+  });
+
+  it('戻すボタンを押すとeditorの中身がoriginal_textの中身になるか', () => {
+    const restoreButton = document.getElementById('restoreButton');
+    if (restoreButton) {
+      restoreButton.click();
+  
+      // テキストが元に戻ったことを確認
+      const editor = document.getElementById('editor') as HTMLTextAreaElement;
+      const originalTextArea = document.getElementById('original_text_area') as HTMLTextAreaElement;
+      expect(editor.value).toBe(originalTextArea.value);
+    } else {
+      fail('restoreButton is null');
     }
   });
 });
