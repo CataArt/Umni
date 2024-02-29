@@ -11,12 +11,13 @@ describe('index page initialization', () => {
   beforeEach(() => {
     // テストのためのDOM要素のセットアップ
     document.body.innerHTML = `
-      <textarea id="editor"></textarea>
+      <textarea id="editor">text in editor</textarea>
       <input type="checkbox" name="dictionary" value="dictionary1">
       <input type="checkbox" name="dictionary" value="dictionary2">
       <button id="translateButton"></button>
       <input id="replace_probability" value="0.5">
-      <textarea id="original_text_area"></textarea>
+      <textarea id="original_text_area">original text</textarea>
+      <button id="restoreButton"></button>
     `;
     
     // indexページのスクリプトをエミュレートするために、DOMContentLoadedイベントを手動で発火
