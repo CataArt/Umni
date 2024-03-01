@@ -32,3 +32,23 @@ describe('辞書を選択する機能', () => {
     expect(loadReplacements).toHaveBeenCalledWith(dictName);
   });
 });
+
+describe('置換先の長さによる挙動のテスト', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    document.body.innerHTML = ''; // DOMクリーンアップ
+  });
+
+  it.each([
+    ['短い置換先', new Map([['short', 'shortRep']]), 'shortText', 'shortRepText', 100],
+    ['長い置換先', new Map([['long', 'longReplacementThatIsVeryLong']]), 'longText', 'longReplacementThatIsVeryLongText', 100],
+    ['長い置換先で置換なし', new Map([['long', 'longReplacementThatIsVeryLong']]), 'longText', 'longText', 1], // Math.random()が0を返す場合、置換されない
+  ])('%s', async (description, replacementsMap, originalText, expectedText, randomValue) => {
+    jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+    (loadReplacements as jest.Mock).mockResolvedValue(replacementsMap);
+
+    const translatedText = await translate(originalText, ['dict'], randomValue.toString());
+
+    expect(translatedText).toBe(expectedText);
+  });
+});
