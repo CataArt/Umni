@@ -71,4 +71,32 @@ describe('index page initialization', () => {
       fail('restoreButton is null');
     }
   });
+
+  it('should only pass checked dictionaries to translate function on button click', async () => {
+    // チェックボックスを明示的に選択する
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf<HTMLInputElement>;
+    // 最初のチェックボックスをチェックする
+    if (checkboxes.length > 0) {
+      checkboxes[0].checked = true; // 最初のチェックボックスにチェックを入れる
+    } else {
+      fail('No checkboxes found');
+    }
+  
+    const translateButton = document.getElementById('translateButton');
+    const editor = document.getElementById('editor') as HTMLTextAreaElement;
+    const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement;
+  
+    if (translateButton && editor && replaceProbabilityInput) {
+      // translateボタンをクリック
+      translateButton.click();
+  
+      // チェックされた辞書のみがtranslate関数に渡されることを確認
+      const checkedDictionaries = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
+      expect(translate).toHaveBeenCalledWith(editor.value, checkedDictionaries, replaceProbabilityInput.value);
+      expect(checkedDictionaries.length).toBe(1); // チェックされた辞書は1つだけであることを確認
+      expect(checkedDictionaries).toContain('dictionary1'); // チェックされた辞書のvalueが期待通りであることを確認
+    } else {
+      fail('Setup failed: Required elements are null');
+    }
+  });  
 });

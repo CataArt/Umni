@@ -87,6 +87,7 @@ describe('loadReplacements function', () => {
     (fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
+        // カンマが多すぎる行を含む(不正)
         text: () => Promise.resolve('original1,replacement1\nmalformed,line,\noriginal2,replacement2'),
       })
     );
