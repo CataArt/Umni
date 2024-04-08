@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const restoreButton = document.getElementById('restoreButton') as HTMLButtonElement | null;
   const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement | null;
   const originalTextArea = document.getElementById('original_text_area') as HTMLTextAreaElement | null;
+  
   if (editor && translateButton && replaceProbabilityInput && originalTextArea && restoreButton) {
     translateButton.addEventListener('click', async () => {
       // 元のテキストを表示

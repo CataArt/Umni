@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/14</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -87,28 +87,40 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
@@ -121,9 +133,11 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
   const editor = document.getElementById('editor') as HTMLTextAreaElement | null;
   const checkboxes = document.querySelectorAll('input[type="checkbox"][name="dictionary"]') as NodeListOf&lt;HTMLInputElement&gt;;
   const translateButton = document.getElementById('translateButton') as HTMLButtonElement | null;
+  const restoreButton = document.getElementById('restoreButton') as HTMLButtonElement | null;
   const replaceProbabilityInput = document.getElementById('replace_probability') as HTMLInputElement | null;
   const originalTextArea = document.getElementById('original_text_area') as HTMLTextAreaElement | null;
-  if (editor &amp;&amp; translateButton &amp;&amp; replaceProbabilityInput &amp;&amp; originalTextArea) {
+  
+  if (editor &amp;&amp; translateButton &amp;&amp; replaceProbabilityInput &amp;&amp; originalTextArea &amp;&amp; restoreButton) {
     translateButton.addEventListener('click', async () =&gt; {
       // 元のテキストを表示
       originalTextArea.value = editor.value;
@@ -131,8 +145,12 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
       // チェックされた辞書のvalueを集めた配列を作成
       const checkedDictionaries = Array.from(checkboxes)
         .filter(checkbox =&gt; checkbox.checked)
-        .map(<span class="fstat-no" title="function not covered" >checkbox </span>=&gt; <span class="cstat-no" title="statement not covered" >checkbox.value)</span>;
+        .map(checkbox =&gt; checkbox.value);
       editor.value = await translate(editor.value, checkedDictionaries, replaceProbabilityInput.value);
+    });
+&nbsp;
+    restoreButton.addEventListener('click', () =&gt; {
+      editor.value = originalTextArea.value;
     });
   }
 });</pre></td></tr></table></pre>
@@ -142,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-26T08:29:05.402Z
+                at 2024-03-05T14:22:09.840Z
             </div>
         <script src="prettify.js"></script>
         <script>

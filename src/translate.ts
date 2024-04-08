@@ -8,7 +8,7 @@ async function translate(text: string, selectedDictionaries: string[], replacePr
   let replacements = new Map<string, string>();
   let tempReplacements = new Map<string, string>();
   let counter = 1;
-  let replaceProbability = parseInt(replaceProbabilityInput) || 50;
+  let replaceProbability = parseInt(replaceProbabilityInput);
 
   // チェックされた辞書ファイルを読み込み、置換マップを作成
   for (const dictName of selectedDictionaries) {
