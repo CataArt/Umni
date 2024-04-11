@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # デプロイをトリガーするブランチ
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14' # 使用するNode.jsのバージョン
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test # Jestなどのテストコマンド
+
+    - name: Deploy to GitHub Pages
+      if: success() # テストが成功した場合にのみ実行
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./ # デプロイするディレクトリ
