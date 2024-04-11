@@ -1,5 +1,5 @@
 TN:
-SF:src\index.ts
+SF:src/index.ts
 FN:7,(anonymous_8)
 FN:16,(anonymous_9)
 FN:16,(anonymous_10)
@@ -43,7 +43,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:src\replacements.ts
+SF:src/replacements.ts
 FN:14,loadReplacements
 FNF:1
 FNH:1
@@ -74,7 +74,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:src\translate.ts
+SF:src/translate.ts
 FN:7,translate
 FN:19,(anonymous_9)
 FN:32,(anonymous_10)

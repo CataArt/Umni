@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709648529889" clover="3.2.0">
-  <project timestamp="1709648529889" name="All files">
+<coverage generated="1712844952584" clover="3.2.0">
+  <project timestamp="1712844952584" name="All files">
     <metrics statements="65" coveredstatements="65" conditionals="16" coveredconditionals="16" methods="14" coveredmethods="14" elements="95" coveredelements="95" complexity="0" loc="65" ncloc="65" packages="1" files="3" classes="3"/>
-    <file name="index.ts" path="C:\Users\satoshi_takami\Umni\src\index.ts">
+    <file name="index.ts" path="/home/runner/work/Umni/Umni/src/index.ts">
       <metrics statements="17" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
       <line num="5" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
@@ -22,7 +22,7 @@
       <line num="27" count="4" type="stmt"/>
       <line num="28" count="1" type="stmt"/>
     </file>
-    <file name="replacements.ts" path="C:\Users\satoshi_takami\Umni\src\replacements.ts">
+    <file name="replacements.ts" path="/home/runner/work/Umni/Umni/src/replacements.ts">
       <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <line num="14" count="2" type="stmt"/>
       <line num="15" count="5" type="stmt"/>
@@ -43,7 +43,7 @@
       <line num="37" count="2" type="stmt"/>
       <line num="38" count="2" type="stmt"/>
     </file>
-    <file name="translate.ts" path="C:\Users\satoshi_takami\Umni\src\translate.ts">
+    <file name="translate.ts" path="/home/runner/work/Umni/Umni/src/translate.ts">
       <metrics statements="30" coveredstatements="30" conditionals="8" coveredconditionals="8" methods="7" coveredmethods="7"/>
       <line num="5" count="1" type="stmt"/>
       <line num="8" count="7" type="stmt"/>
